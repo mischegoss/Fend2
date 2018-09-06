@@ -26,6 +26,14 @@ for (var i=0; i< cards.length; i++){
   });
 }
 
+function validClick (targetX) {
+  return
+  (targetX.classList.contains("card")
+    && toggledXY.length < 2
+    && !targetX.classList.contains("card")
+    && !toggledXY.includes(targetX)
+  )
+}
 
 function matched() {
   if(toggledXY[0].firstElementChild.className === toggledXY[1].firstElementChild.className) {
@@ -34,7 +42,7 @@ function matched() {
       console.log("match");
       toggledXY = [];
   } else {
-    unmatched();
+    setTimeout(unmatched, 1500);
   }
 }
 
