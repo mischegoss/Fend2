@@ -1,3 +1,5 @@
+
+//Variables
 let toggledXY = [];
 let moves = 0;
 const counter = document.querySelector('.moves');
