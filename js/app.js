@@ -2,20 +2,14 @@ let toggledXY = [];
 let moves = 0;
 const counter = document.querySelector('.moves');
 const starsArray = document.querySelectorAll('.stars li');
-
-
-/*
- * Create a list that holds all of your cards
- */
- //Array  called cards
- let card = document.getElementsByClassName("card");
+let card = document.getElementsByClassName("card");
  const cards = [...card];
 
 
 for (var i=0; i< cards.length; i++){
   cards[i].addEventListener ('click', () => {
     const targetX = event.target;
-    if (targetX.classList.contains("card") && toggledXY.length < 2 ) {
+    if (targetX.classList.contains("card") && toggledXY.length < 2 && !toggledXY.includes(targetX)) {
       cardToggle(targetX);
       cardOpen(targetX);
     if (toggledXY.length === 2){
@@ -26,14 +20,6 @@ for (var i=0; i< cards.length; i++){
   });
 }
 
-function validClick (targetX) {
-  return
-  (targetX.classList.contains("card")
-    && toggledXY.length < 2
-    && !targetX.classList.contains("card")
-    && !toggledXY.includes(targetX)
-  )
-}
 
 function matched() {
   if(toggledXY[0].firstElementChild.className === toggledXY[1].firstElementChild.className) {
