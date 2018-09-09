@@ -92,7 +92,25 @@ function removeStar() {
 }}
 }
 
+function startTimer(){
+  timerId = setInterval(() => {
+    time++;
+    displayTimer();
+  }, 1000);
+}
+function displayTimer(){
+  const gameTime = document.getElementById('timer');
+  const minutes = Math.floor(time/60);
+  const seconds = time % 60;
+  if (seconds < 10){
+    gameTime.innerHTML=`${minutes}:0${seconds}`;
+  }else
+  gameTime.innerHTML=`${minutes}:${seconds}`;
+}
 
+function stopTimer(){
+  clearInterval(timerId);
+}
 
 
 
