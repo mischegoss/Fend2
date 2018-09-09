@@ -123,7 +123,7 @@ function GameWon(){
 
 function modal(){
   const modal = document.querySelector('.modal');
-      modal.classList.toggle('duringGame');
+  document.querySelector('.modal').style.display = "block";    
 
 }
 
@@ -148,6 +148,9 @@ document.querySelector('.resetGame').addEventListener('click', () =>{
 document.querySelector('.newGame').addEventListener('click', () =>{playAgain(); toggleAllCards();
 })
 
+
+/* To get modal to work: I set the modal to `display: none` in the CSS, then I used `document.querySelector('.modal').style.display = "block";`
+in the JS to switch it to `display: block` once all the cards matched. */
 
 
 
