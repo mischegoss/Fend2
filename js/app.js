@@ -1,5 +1,8 @@
 
 //Variables
+let timerOff = true;
+let time = 0;
+let timerId;
 let toggledXY = [];
 let moves = 0;
 const counter = document.querySelector('.moves');
@@ -99,7 +102,7 @@ function startTimer(){
   }, 1000);
 }
 function displayTimer(){
-  const gameTime = document.getElementById('timer');
+  const gameTime = document.getElementbyId('timer');
   const minutes = Math.floor(time/60);
   const seconds = time % 60;
   if (seconds < 10){
@@ -111,6 +114,39 @@ function displayTimer(){
 function stopTimer(){
   clearInterval(timerId);
 }
+
+function GameWon(){
+  stopTimer();
+  modal();
+  finalStats();
+}
+
+function modal(){
+  const modal = document.querySelector('.modal');
+      modal.classList.toggle('duringGame');
+
+}
+
+function finalStats(){
+  let modalStats = document.querySelector('.modal-stat');
+  let starCount = document.querySelector('.stars').childElementCount;
+
+  modalStats.innerHTML = "You won the game with " + moves +
+    " moves and " +starCount+ " stars. Great job!";
+}
+
+document.querySelector('.close-modal').addEventListener('click', () =>{
+  modal();
+})
+
+document.querySelector('.resetGame').addEventListener('click', () =>{
+  playAgain();
+  toggleAllCards();
+  modal();
+  })
+
+document.querySelector('.newGame').addEventListener('click', () =>{playAgain(); toggleAllCards();
+})
 
 
 

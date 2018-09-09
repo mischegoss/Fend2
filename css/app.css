@@ -153,3 +153,61 @@ h1 {
       }
   }
 /* Add note */
+/* modal */
+
+.modal-cover{
+  height:700%;
+  width:100%;
+  background-color:rgba(0, 0, 0, 0.25);
+/*   opacity: 0.2; */
+  position: absolute;
+  top:0;
+  left:0;
+}
+
+.modal-content{
+  height:300px;
+  width:50%;
+  margin:auto;
+  background-color:white;
+  position: relative;
+  top:20%;
+  border-radius: 10px;
+}
+
+.modal-heading{
+  color:black;
+}
+
+.modal-heading h1{
+  text-align: center;
+  margin-top:0;
+}
+.modal-heading h3, p{
+  text-align: left;
+  padding-left: 10%;
+}
+
+.close-modal{
+ padding: 1em;
+ position: relative;
+  left:90%;
+ cursor:pointer;
+}
+
+.modal-heading button{
+  position: relative;
+  left:40%;
+  width: 10em;
+  height:3em;
+  background-color:#02ccba;
+  border-radius:10px;
+  color:white;
+  font-size:16px;
+  margin-top:15px;
+  cursor:pointer;
+}
+
+.duringGame{
+  display:none;
+}
