@@ -112,6 +112,8 @@ h1 {
 }
 .score-panel .stars .hide {
   visibility: collapse;
+}
+
 
   @media screen and (max-width: 750px) {
       .deck {max-width:600px;}
