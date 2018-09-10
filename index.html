@@ -18,7 +18,7 @@
         </header>
 
         <section class="score-panel">
-          <span id="timer"> 0:00 </span>
+          <span class="timer">0:00</span>
         	<ul class="stars">
         		<li><i class="fa fa-star"></i></li>
         		<li><i class="fa fa-star"></i></li>
@@ -82,20 +82,24 @@
             </li>
         </ul>
     </div>
+    <!-- win game message section
+    <div id="win-message-section">
 
-    <div class='modal'>
-      <div class='modal-cover'>
-        <div class='modal-content'>
-          <div class='modal-heading'>
-              <div class='close-modal'>X</div>
-              <h1>You Won!</h1>
-              <h3>Final Stats:</h3>
-              <p class= 'modal-stat'></p>
-            <button class="btn btn-success resetGame">Play Again!</button>
-          </div>
+      <div class="fade-out game-win-info">
+        <h2>
+          Congratulations! You Won!
+        </h2>
+        <div class="txt-holder">
+          <p class="txt" id="win-info">
+            with <span id="moves-number"></span> moves and <span id="stars-info"></span><br> in <span id="seconds-info"></span>
+          </p>
+          <p class="txt">Wooooooo!</p>
         </div>
+        <div id="play-again" class="play-again__botton">Play again!</div>
       </div>
-      </div>
+    </div>
+    end of win game message section -->
+
 
 
     <script src="js/app.js"></script>

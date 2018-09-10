@@ -1,8 +1,10 @@
 
 //Variables
-let timerOff = true;
+let clockId;
 let time = 0;
-let timerId;
+let clockOff = true;
+const minutes = Math.floor(time/60);
+const seconds = time % 60;
 let toggledXY = [];
 let moves = 0;
 const counter = document.querySelector('.moves');
@@ -15,6 +17,10 @@ for (var i=0; i< cards.length; i++){
   cards[i].addEventListener ('click', () => {
     const targetX = event.target;
     if (targetX.classList.contains("card") && toggledXY.length < 2 && !toggledXY.includes(targetX)) {
+      if (clockOff) {
+           startClock();
+           clockOff = false;
+       }
       cardToggle(targetX);
       cardOpen(targetX);
     if (toggledXY.length === 2){
@@ -24,6 +30,7 @@ for (var i=0; i< cards.length; i++){
     }
   });
 }
+
 
 
 function matched() {
@@ -95,118 +102,28 @@ function removeStar() {
 }}
 }
 
-function startTimer(){
-  timerId = setInterval(() => {
-    time++;
-    displayTimer();
+function startClock()  {
+  time = 0;
+  clockId = setInterval(() => {
+  time ++;
+  console.log(time);
   }, 1000);
-}
-function displayTimer(){
-  const gameTime = document.getElementbyId('timer');
-  const minutes = Math.floor(time/60);
-  const seconds = time % 60;
-  if (seconds < 10){
-    gameTime.innerHTML=`${minutes}:0${seconds}`;
-  }else
-  gameTime.innerHTML=`${minutes}:${seconds}`;
-}
+  }
 
-function stopTimer(){
-  clearInterval(timerId);
-}
+startClock();
 
-function GameWon(){
-  stopTimer();
-  modal();
-  finalStats();
-}
-
-function modal(){
-  const modal = document.querySelector('.modal');
-  document.querySelector('.modal').style.display = "block";    
-
-}
-
-function finalStats(){
-  let modalStats = document.querySelector('.modal-stat');
-  let starCount = document.querySelector('.stars').childElementCount;
-
-  modalStats.innerHTML = "You won the game with " + moves +
-    " moves and " +starCount+ " stars. Great job!";
-}
-
-document.querySelector('.close-modal').addEventListener('click', () =>{
-  modal();
-})
-
-document.querySelector('.resetGame').addEventListener('click', () =>{
-  playAgain();
-  toggleAllCards();
-  modal();
-  })
-
-document.querySelector('.newGame').addEventListener('click', () =>{playAgain(); toggleAllCards();
-})
-
-
-/* To get modal to work: I set the modal to `display: none` in the CSS, then I used `document.querySelector('.modal').style.display = "block";`
-in the JS to switch it to `display: block` once all the cards matched. */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
-
-// Shuffle function from http://stackoverflow.com/a/2450976
-/*function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
-
-    while (currentIndex !== 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
+function displayTime() { //function makes variables that calculates the minutes and seconds, and manipulates the DOM to display them.
+    const timer = document.getElementbyId('timer');
+    timer.innerHTML = time;
+    const minutes = Math.floor(time / 60);
+    const seconds = time % 60;
+    if (seconds < 10) { //if the seconds is less than 10 (2-digit numbers), then it will display the minutes and seconds (from 0-9)
+        clock.innerHTML = `${minutes}:0${seconds}`;
+    } else { // Or else it'll display the minutes and seconds (numbers > 9)
+        clock.innerHTML = `${minutes}:${seconds}`;
     }
-
-    return array;
 }
 
-*/
-/*
- * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  - if the list already has another card, check to see if the two cards match
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
+function stopClock() { //function ends the timer by using a clearInterval method.
+    clearInterval(clockId);
+}
