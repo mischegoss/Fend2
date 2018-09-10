@@ -106,21 +106,21 @@ function startClock()  {
   time = 0;
   clockId = setInterval(() => {
   time ++;
-  console.log(time);
+  displayTime();
   }, 1000);
   }
 
 startClock();
 
 function displayTime() { //function makes variables that calculates the minutes and seconds, and manipulates the DOM to display them.
-    const timer = document.getElementbyId('timer');
+    const timer = document.querySelector('#timer');
     timer.innerHTML = time;
     const minutes = Math.floor(time / 60);
     const seconds = time % 60;
     if (seconds < 10) { //if the seconds is less than 10 (2-digit numbers), then it will display the minutes and seconds (from 0-9)
-        clock.innerHTML = `${minutes}:0${seconds}`;
+        timer.innerHTML = `${minutes}:0${seconds}`;
     } else { // Or else it'll display the minutes and seconds (numbers > 9)
-        clock.innerHTML = `${minutes}:${seconds}`;
+        timer.innerHTML = `${minutes}:${seconds}`;
     }
 }
 
