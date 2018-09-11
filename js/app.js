@@ -4,27 +4,31 @@ let time = 0;
 let clockOff = true;
 const minutes = Math.floor(time / 60);
 const seconds = time % 60;
-let toggledXY = [];
-let moves = 0;
+let toggledXY = []; //add the card to a list of open cards
+let moves = 0; // sets moves to zero
 const counter = document.querySelector(".moves");
 const starsArray = document.querySelectorAll(".stars li");
+
+
+//Creates an array for the cards
 let card = document.getElementsByClassName("card");
 const cards = [...card];
 
-for (var i = 0; i < cards.length; i++) {
+for (var i = 0; i < cards.length; i++) { //Looping to add event listener
   cards[i].addEventListener("click", () => {
     const targetX = event.target;
     if (
-      targetX.classList.contains("card") &&
-      toggledXY.length < 2 &&
-      !toggledXY.includes(targetX)
+      targetX.classList.contains("card") &&  //checks if it has .card class
+      !targetX.classList.contains("match") && //checks that it does not contain .match
+      toggledXY.length < 2 &&  // checks length of array is less than  2
+      !toggledXY.includes(targetX)  // checks array does not include card already
     ) {
       if (clockOff) {
         startClock();
         clockOff = false;
       }
-      cardToggle(targetX);
-      cardOpen(targetX);
+      cardToggle(targetX);// flips the cards
+      cardOpen(targetX); //pushes clicked on card into array
       if (toggledXY.length === 2) {
         moveCounts();
         matched();
@@ -33,7 +37,16 @@ for (var i = 0; i < cards.length; i++) {
   });
 }
 
-function matched() {
+function cardToggle(targetX) { //This is the card toggle function
+  targetX.classList.toggle("open");
+  targetX.classList.toggle("show");
+}
+
+function cardOpen(targetX) { //pushes clicked card into array
+  toggledXY.push(targetX);
+}
+
+function matched() { //adds .match to cards if they are match
   if (
     toggledXY[0].firstElementChild.className ===
     toggledXY[1].firstElementChild.className
@@ -43,25 +56,17 @@ function matched() {
     console.log("match");
     toggledXY = [];
   } else {
-    setTimeout(unmatched, 1500);
+    setTimeout(unmatched, 1500); //makes it so cards don't flip over immediately
   }
 }
 
-function unmatched() {
+function unmatched() { // if cards are unmatched,  empties array but does not add .match class
   cardToggle(toggledXY[0]);
   cardToggle(toggledXY[1]);
   toggledXY = [];
 }
 
-function cardToggle(targetX) {
-  targetX.classList.toggle("open");
-  targetX.classList.toggle("show");
-}
-
-function cardOpen(targetX) {
-  toggledXY.push(targetX);
-}
-
+// this is the provided shuffle function
 function shuffle(array) {
   var currentIndex = array.length,
     temporaryValue,
@@ -76,10 +81,10 @@ function shuffle(array) {
   }
   return array;
 }
-
+//
 const cardDeck = document.querySelector(".deck");
 
-function startGame() {
+function randomizeDeck() { //This function shuffles the cards
   var shuffledCards = shuffle(cards);
   for (var i = 0; i < shuffledCards.length; i++) {
     shuffledCards.forEach.call(shuffledCards, function(item) {
@@ -88,18 +93,18 @@ function startGame() {
   }
 }
 
-window.onload = startGame();
+window.onload = randomizeDeck();
 
-function moveCounts() {
+function moveCounts() { //This is the move counter
   moves === 0;
   moves++;
   counter.innerHTML = moves;
-  if (moves === 6 || moves === 12) {
-    removeStar();
+  if (moves === 10 || moves === 20) {
+    removeStar(); // When moves equal 10 or 20 one star is removed. One star always remains no matter how many moves.
   }
 }
 
-function removeStar() {
+function removeStar() { //This is the function to hide stars. It adds the class .hide which is styled in CSS.
   for (var i = 0; i < starsArray.length; i++) {
     if (moves === 6) {
       starsArray[2].classList.add("hide");
@@ -109,31 +114,28 @@ function removeStar() {
   }
 }
 
-function startClock() {
+function startClock() { //This  is the timer
   time = 0;
   clockId = setInterval(() => {
     time++;
-    displayTime();
+    console.log(time);
+    displayTimer();
   }, 1000);
 }
 
-startClock();
 
-function displayTime() {
-  //function makes variables that calculates the minutes and seconds, and manipulates the DOM to display them.
+function displayTimer() {
   const timer = document.querySelector("#timer");
   timer.innerHTML = time;
   const minutes = Math.floor(time / 60);
   const seconds = time % 60;
   if (seconds < 10) {
-    //if the seconds is less than 10 (2-digit numbers), then it will display the minutes and seconds (from 0-9)
-    timer.innerHTML = `min ${minutes} sec 0${seconds}`;
+    timer.innerHTML = `minutes ${minutes} seconds 0${seconds}`;
   } else {
-    // Or else it'll display the minutes and seconds (numbers > 9)
-    timer.innerHTML = `min ${minutes} sec ${seconds}`;
+    timer.innerHTML = `minutes ${minutes} seconds ${seconds}`;
   }
 }
 
-function stopClock() {
+function stopTimer() { //This stops the clock
   clearInterval(clockId);
 }
