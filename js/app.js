@@ -237,7 +237,7 @@ function checkWin() {
     matched += 1;
     if (matched === 8) {
         gameOver();
-        //console.log('finished ya 7bibi');
+
     }
 };
 

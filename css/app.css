@@ -186,6 +186,10 @@ h1 {
  background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
 }
 
+.congrats-popup .hide {
+  display: none;
+}
+
 /* Start Modal */
 
 .modal_start {
