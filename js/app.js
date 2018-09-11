@@ -1,7 +1,9 @@
 //Variables
 let clockId;
+let starCount;
 let time = 0;
 let clockOff = true;
+let matchedcards = 0;
 const minutes = Math.floor(time / 60);
 const seconds = time % 60;
 let toggledXY = []; //add the card to a list of open cards
@@ -53,10 +55,19 @@ function matched() { //adds .match to cards if they are match
   ) {
     toggledXY[0].classList.add("match");
     toggledXY[1].classList.add("match");
-    console.log("match");
+    matchedcards ++;
+    console.log(matchedcards);
     toggledXY = [];
   } else {
     setTimeout(unmatched, 1500); //makes it so cards don't flip over immediately
+  }
+}
+
+function youWon() {
+  if (matchedcards === 8) {
+    stopClock();
+    writeModalStats();
+    toggleModal();
   }
 }
 
@@ -139,64 +150,61 @@ function displayTimer() {
 function stopTimer() { //This stops the clock
   clearInterval(clockId);
 }
-/*
-// get stars func
-function getStars() {
-    stars = document.querySelectorAll('.stars li');
-    starCount = 0;
-    for (star of stars) {
-        if (star.style.display !== 'none') {
-            starCount++;
-        }
-    }
-    //console.log(starCount);
-    return starCount;
-}
 
-// MODAL Finish: Show-Hide Modal Stats
 function toggleModal() {
-    const modal = document.querySelector('.modal_bkgd');
-    modal.classList.toggle('hide');
+    const modal = document.querySelector('.congrats-popup');
+    modal.classList.toggle('hidden');
 }
 
-// MODAL Start"
-function toggleStartModal() {
-    const modal = document.querySelector('.modal_start');
-    modal.classList.toggle('hide');
+/*function getStars() {
+  let starsList = document.querySelectorAll(".stars li");
+  var starRating = document.querySelector(".stars").innerHTML;
+  stars = document.querySelector('stars li');
+  starCount = 0;
+  for (var i = 0; i < starsArray.length; i++) {
+          starCount++;
+          console.log(starCount);
+      }
+  }
+*/
+
+function toggleModal() {
+    const modal = document.querySelector('.congrats-popup');
+    modal.classList.toggle('hidden');
 }
 
-// MODAL: write stats func
 function writeModalStats() {
-    const timeStat = document.querySelector('.modal_time');
-    const clockTime = document.querySelector('.clock').innerHTML;
-    const movesStat = document.querySelector('.modal_moves');
-    const starsStat = document.querySelector('.modal_stars');
-    const stars = getStars();
+    const timeStat = document.querySelector('.time-stat');
+    const clockTime = document.querySelector('#timer').innerHTML;
+    const movesStat = document.querySelector('.moves-stat');
+    /*const starsStat = document.querySelector('.stars-stat');
+    const stars = getStars();*/
 
     timeStat.innerHTML = `Time = ${clockTime}`;
     movesStat.innerHTML = `Moves = ${moves}`;
-    starsStat.innerHTML = `Stars = ${stars}`;
+  /*  starsStat.innerHTML = `Stars = ${stars}`; */
 }
 
 // MODAL: Buttons listener func
-document.querySelector('.btn_cancel').addEventListener('click', toggleModal);
-document.querySelector('.modal_start_btn').addEventListener('click', toggleStartModal);
-document.querySelector('.btn_reply').addEventListener('click', replyGame);
+document.querySelector('.cancel').addEventListener('click', toggleModal);
+/*document.querySelector('.modal_start').addEventListener('click', toggleStartModal);*/
+document.querySelector('.reply').addEventListener('click', replyGame);
 document.querySelector('.restart').addEventListener('click', resetGame);
 
 // MODAL: Button Reply to reset the game func
 function resetGame() {
-    matched = 0;
+    matchedcards = 0;
     resetClockAndTime();
     resetMoves();
     resetStars();
     resetCards();
     shuffleDeck();
+
 }
 
 //MODAL: Button "Reply" to reset the game func
 function replyGame() {
-    matched = 0;
+    matchedcards = 0;
     resetGame();
     toggleModal();
     resetCards();
@@ -232,14 +240,6 @@ function resetMoves() {
     document.querySelector('.moves').innerHTML = moves;
 }
 
-// FINAL CHECK if win or still playing
-function checkWin() {
-    matched += 1;
-    if (matched === 8) {
-        gameOver();
-
-    }
-};
 
 // Congratulations
 function gameOver() {
@@ -248,7 +248,6 @@ function gameOver() {
     toggleModal();
 };
 
-shuffleDeck();
+randomizeDeck();
 writeModalStats();
-toggleStartModal();
-*/
+toggleModal();
