@@ -114,7 +114,7 @@ h1 {
   visibility: collapse;
 }
 
-.modal-background {
+.congrats-popup {
    position: absolute;
    top: 0;
    left: 0;
@@ -131,7 +131,8 @@ h1 {
    background: #ffffff ;
    transform: translate(-50%, -70%);
    border-radius: 15px;
-   border:3px solid #02ccba;
+   border: 5px inset #02CCBA;
+
 }
 
 .modal-top {
@@ -139,7 +140,7 @@ h1 {
    /*justify-content: space-between;*/
    align-items: center;
    padding: 0 30px;
-   background: #02ccba;
+   background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
 }
 
 .modal_close {
@@ -222,13 +223,13 @@ h1 {
 }
 
 .modal_start_btn:hover {
-   background: linear-gradient(160deg, #aa7ecd 0%, #02ccba 100%);
+   background: #aa7ecd;
    border:1px solid #aa7ecd;
 }
 
-.modal_start_btn:active {
+/*.modal_start_btn:active {
  background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
-}
+} */
 
 
   @media screen and (max-width: 750px) {

@@ -139,3 +139,116 @@ function displayTimer() {
 function stopTimer() { //This stops the clock
   clearInterval(clockId);
 }
+/*
+// get stars func
+function getStars() {
+    stars = document.querySelectorAll('.stars li');
+    starCount = 0;
+    for (star of stars) {
+        if (star.style.display !== 'none') {
+            starCount++;
+        }
+    }
+    //console.log(starCount);
+    return starCount;
+}
+
+// MODAL Finish: Show-Hide Modal Stats
+function toggleModal() {
+    const modal = document.querySelector('.modal_bkgd');
+    modal.classList.toggle('hide');
+}
+
+// MODAL Start"
+function toggleStartModal() {
+    const modal = document.querySelector('.modal_start');
+    modal.classList.toggle('hide');
+}
+
+// MODAL: write stats func
+function writeModalStats() {
+    const timeStat = document.querySelector('.modal_time');
+    const clockTime = document.querySelector('.clock').innerHTML;
+    const movesStat = document.querySelector('.modal_moves');
+    const starsStat = document.querySelector('.modal_stars');
+    const stars = getStars();
+
+    timeStat.innerHTML = `Time = ${clockTime}`;
+    movesStat.innerHTML = `Moves = ${moves}`;
+    starsStat.innerHTML = `Stars = ${stars}`;
+}
+
+// MODAL: Buttons listener func
+document.querySelector('.btn_cancel').addEventListener('click', toggleModal);
+document.querySelector('.modal_start_btn').addEventListener('click', toggleStartModal);
+document.querySelector('.btn_reply').addEventListener('click', replyGame);
+document.querySelector('.restart').addEventListener('click', resetGame);
+
+// MODAL: Button Reply to reset the game func
+function resetGame() {
+    matched = 0;
+    resetClockAndTime();
+    resetMoves();
+    resetStars();
+    resetCards();
+    shuffleDeck();
+}
+
+//MODAL: Button "Reply" to reset the game func
+function replyGame() {
+    matched = 0;
+    resetGame();
+    toggleModal();
+    resetCards();
+    resetStars()
+};
+
+
+// Reset Functions :
+
+function resetCards() {
+    const cards = document.querySelectorAll('.deck li');
+    for (let card of cards) {
+    card.classList = 'card hero animated';
+    }
+};
+
+function resetStars() {
+    const stars = document.querySelectorAll('ul.stars li');
+    for (let star of stars) {
+      star.style.display = 'inline';
+    }
+}
+
+function resetClockAndTime() {
+    stopClock();
+    clockOff = true;
+    time = 0;
+    displayTime();
+}
+
+function resetMoves() {
+    moves = 0;
+    document.querySelector('.moves').innerHTML = moves;
+}
+
+// FINAL CHECK if win or still playing
+function checkWin() {
+    matched += 1;
+    if (matched === 8) {
+        gameOver();
+        //console.log('finished ya 7bibi');
+    }
+};
+
+// Congratulations
+function gameOver() {
+    stopClock();
+    writeModalStats();
+    toggleModal();
+};
+
+shuffleDeck();
+writeModalStats();
+toggleStartModal();
+*/
