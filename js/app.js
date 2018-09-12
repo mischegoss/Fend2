@@ -65,7 +65,8 @@ function matched() { //adds .match to cards if they are match
 
 function youWon() {
   if (matchedcards === 8) {
-    stopClock();
+    console.log("you won");
+    stopTimer();
     writeModalStats();
     toggleModal();
   }
@@ -152,8 +153,8 @@ function stopTimer() { //This stops the clock
 }
 
 function toggleModal() {
-    const modal = document.querySelector('.congrats-popup');
-    modal.classList.toggle('hidden');
+    const modal = document.querySelector('.modal');
+    modal.classList.toggle('.hidden');
 }
 
 /*function getStars() {
@@ -198,7 +199,7 @@ function resetGame() {
     resetMoves();
     resetStars();
     resetCards();
-    shuffleDeck();
+    randomizeDeck();
 
 }
 
@@ -229,10 +230,10 @@ function resetStars() {
 }
 
 function resetClockAndTime() {
-    stopClock();
+    stopTimer();
     clockOff = true;
     time = 0;
-    displayTime();
+    displayTimer();
 }
 
 function resetMoves() {
@@ -243,7 +244,7 @@ function resetMoves() {
 
 // Congratulations
 function gameOver() {
-    stopClock();
+    stopTimer();
     writeModalStats();
     toggleModal();
 };
