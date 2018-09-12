@@ -169,11 +169,11 @@ function toggleModal() {
   }
 */
 
-function toggleModal() {
+/*function toggleModal() {
     const modal = document.querySelector('.congrats-popup');
-    modal.classList.toggle('hidden');
+    modal.classList.toggle('.hidden');
 }
-
+*/
 function writeModalStats() {
     const timeStat = document.querySelector('.time-stat');
     const clockTime = document.querySelector('#timer').innerHTML;
