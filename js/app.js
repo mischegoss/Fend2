@@ -58,6 +58,7 @@ function matched() { //adds .match to cards if they are match
     matchedcards ++;
     console.log(matchedcards);
     toggledXY = [];
+    youWon();
   } else {
     setTimeout(unmatched, 1500); //makes it so cards don't flip over immediately
   }
@@ -118,7 +119,7 @@ function moveCounts() { //This is the move counter
 
 function removeStar() { //This is the function to hide stars. It adds the class .hide which is styled in CSS.
   for (var i = 0; i < starsArray.length; i++) {
-    if (moves === 6) {
+    if (moves === 10) {
       starsArray[2].classList.add("hide");
     } else {
       starsArray[1].classList.add("hide");
@@ -152,9 +153,10 @@ function stopTimer() { //This stops the clock
   clearInterval(clockId);
 }
 
-function toggleModal() {
-    const modal = document.querySelector('.modal');
-    modal.classList.toggle('.hidden');
+function toggleModal(){
+  const modal = document.querySelector('.modal');
+      modal.classList.toggle('hidden');
+
 }
 
 /*function getStars() {
@@ -169,11 +171,7 @@ function toggleModal() {
   }
 */
 
-/*function toggleModal() {
-    const modal = document.querySelector('.congrats-popup');
-    modal.classList.toggle('.hidden');
-}
-*/
+
 function writeModalStats() {
     const timeStat = document.querySelector('.time-stat');
     const clockTime = document.querySelector('#timer').innerHTML;
@@ -189,7 +187,7 @@ function writeModalStats() {
 // MODAL: Buttons listener func
 document.querySelector('.cancel').addEventListener('click', toggleModal);
 /*document.querySelector('.modal_start').addEventListener('click', toggleStartModal);*/
-document.querySelector('.reply').addEventListener('click', replyGame);
+document.querySelector('.reply').addEventListener('click', replayGame);
 document.querySelector('.restart').addEventListener('click', resetGame);
 
 // MODAL: Button Reply to reset the game func
@@ -204,7 +202,7 @@ function resetGame() {
 }
 
 //MODAL: Button "Reply" to reset the game func
-function replyGame() {
+function replayGame() {
     matchedcards = 0;
     resetGame();
     toggleModal();
@@ -223,11 +221,13 @@ function resetCards() {
 };
 
 function resetStars() {
-    const stars = document.querySelectorAll('ul.stars li');
+  starsArray[2].classList.remove("hide");
+  starsArray[1].classList.remove("hide");
+    /*const stars = document.querySelectorAll('ul.stars li');
     for (let star of stars) {
-      star.style.display = 'inline';
+      star.style.display = 'inline';*/
     }
-}
+
 
 function resetClockAndTime() {
     stopTimer();
@@ -240,15 +240,3 @@ function resetMoves() {
     moves = 0;
     document.querySelector('.moves').innerHTML = moves;
 }
-
-
-// Congratulations
-function gameOver() {
-    stopTimer();
-    writeModalStats();
-    toggleModal();
-};
-
-randomizeDeck();
-writeModalStats();
-toggleModal();
