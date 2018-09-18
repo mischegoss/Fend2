@@ -18,7 +18,7 @@ body {
 
 body {
     background: #ffffff url('../img/geometry2.png'); /* Background pattern from Subtle Patterns */
-    font-family: 'Coda', cursive;
+    font-family: 'Coda';
 }
 
 .container {
@@ -34,9 +34,6 @@ h1 {
     font-weight: 300;
 }
 
-/*
- * Styles for the deck of cards
- */
 
 .deck {
 
@@ -83,9 +80,6 @@ h1 {
     font-size: 33px;
 }
 
-/*
- * Styles for the Score Panel
- */
 
 .score-panel {
     text-align: left;
@@ -129,7 +123,7 @@ h1 {
    top: 50%;
    left: 50%;
    background: #ffffff ;
-   transform: translate(-50%, -80%);
+   transform: translate(-50%, -150%);
    border-radius: 15px;
    border: 5px inset #02CCBA;
 
@@ -137,7 +131,6 @@ h1 {
 
 .modal-top {
    display: flex;
-   /*justify-content: space-between;*/
    align-items: center;
    padding: 0 30px;
    background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
@@ -160,13 +153,13 @@ h1 {
    font-size: 20px;
 }
 
-.modal_btns {
+.modal-buttons {
    display: flex;
    justify-content: space-around;
    padding: 3rem;
 }
 
-.modal_btn {
+.button {
    width: 140px;
    height: 50px;
    background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
@@ -177,12 +170,12 @@ h1 {
    cursor: pointer;
 }
 
-.modal_btn:hover {
+.button:hover {
    background: linear-gradient(160deg, #aa7ecd 0%, #02ccba 100%);
    border:1px solid #aa7ecd;
 }
 
-.modal_btn:active {
+.button:active {
  background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
 }
 
@@ -190,3 +183,43 @@ h1 {
 .hidden{
   display:none;
 }
+
+@media screen and (max-width: 750px) {
+     .deck {max-width:600px;}
+     .deck .card {
+         height: 100px;
+         width: 100px;
+     }
+     .modal {width: 60%;}
+ }
+
+ @media screen and (max-width: 650px) {
+     .deck {max-width: 500px;}
+     .deck .card {
+         height: 85px;
+         width: 70px;
+         margin: 12px;
+     }
+     .modal {width: 60%;}
+ }
+
+ @media screen and (max-width: 550px) {
+     .deck {
+         max-width: 460px;
+         padding: 20px;
+     }
+     .deck .card {
+         margin: 10px;
+         height: 85px;
+     }
+ }
+
+ @media screen and (max-width: 450px) {
+     .deck {
+         max-width: 400px;
+         padding: 18px;
+     }
+     .deck .card {
+         height: 70px;
+     }
+ }

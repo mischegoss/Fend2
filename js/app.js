@@ -159,7 +159,7 @@ function toggleModal(){
 
 }
 
-/*function getStars() {
+function getStars() {
   let starsList = document.querySelectorAll(".stars li");
   var starRating = document.querySelector(".stars").innerHTML;
   stars = document.querySelector('stars li');
@@ -169,28 +169,28 @@ function toggleModal(){
           console.log(starCount);
       }
   }
-*/
+
 
 
 function writeModalStats() {
     const timeStat = document.querySelector('.time-stat');
     const clockTime = document.querySelector('#timer').innerHTML;
     const movesStat = document.querySelector('.moves-stat');
-    /*const starsStat = document.querySelector('.stars-stat');
-    const stars = getStars();*/
+    //const starsStat = document.querySelector('.stars-stat');
+    const stars = getStars();
 
     timeStat.innerHTML = `Time = ${clockTime}`;
     movesStat.innerHTML = `Moves = ${moves}`;
-  /*  starsStat.innerHTML = `Stars = ${stars}`; */
+  //starsStat.innerHTML = `Stars = ${stars}`;
 }
 
 // MODAL: Buttons listener func
 document.querySelector('.cancel').addEventListener('click', toggleModal);
 /*document.querySelector('.modal_start').addEventListener('click', toggleStartModal);*/
-document.querySelector('.reply').addEventListener('click', replayGame);
+document.querySelector('.replay').addEventListener('click', replayGame);
 document.querySelector('.restart').addEventListener('click', resetGame);
 
-// MODAL: Button Reply to reset the game func
+
 function resetGame() {
     matchedcards = 0;
     resetClockAndTime();
@@ -203,29 +203,29 @@ function resetGame() {
 
 //MODAL: Button "Reply" to reset the game func
 function replayGame() {
-    matchedcards = 0;
-    resetGame();
+  matchedcards = 0;
+  resetClockAndTime();
+  resetMoves();
+  resetStars();
+  resetCards();
+  randomizeDeck();
     toggleModal();
-    resetCards();
-    resetStars()
+
+
 };
 
-
-// Reset Functions :
-
-function resetCards() {
-    const cards = document.querySelectorAll('.deck li');
-    for (let card of cards) {
-    card.classList = 'card hero animated';
-    }
-};
+function resetCards(){
+  for (var i = 0; i < cards.length; i++) {
+    card[i].classList.remove("open");
+    card[i].classList.remove("match");
+    card[i].classList.remove("show");
+  }
+}
 
 function resetStars() {
   starsArray[2].classList.remove("hide");
   starsArray[1].classList.remove("hide");
-    /*const stars = document.querySelectorAll('ul.stars li');
-    for (let star of stars) {
-      star.style.display = 'inline';*/
+
     }
 
 
