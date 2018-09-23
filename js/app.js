@@ -12,6 +12,7 @@ const counter = document.querySelector(".moves");
 const starsArray = document.querySelectorAll(".stars li");
 
 
+
 //Creates an array for the cards
 let card = document.getElementsByClassName("card");
 const cards = [...card];
@@ -160,28 +161,31 @@ function toggleModal(){
 }
 
 function getStars() {
-  let starsList = document.querySelectorAll(".stars li");
-  var starRating = document.querySelector(".stars").innerHTML;
+//let starsList = document.querySelectorAll(".stars li");
+//var starRating = document.querySelector(".stars").innerHTML;
   stars = document.querySelector('stars li');
   starCount = 0;
   for (var i = 0; i < starsArray.length; i++) {
           starCount++;
           console.log(starCount);
       }
-  }
 
+return starCount
+}
 
 
 function writeModalStats() {
     const timeStat = document.querySelector('.time-stat');
     const clockTime = document.querySelector('#timer').innerHTML;
     const movesStat = document.querySelector('.moves-stat');
+    const starsStat = document.querySelector('.stars-stat')
     //const starsStat = document.querySelector('.stars-stat');
     const stars = getStars();
 
+
     timeStat.innerHTML = `Time = ${clockTime}`;
     movesStat.innerHTML = `Moves = ${moves}`;
-  //starsStat.innerHTML = `Stars = ${stars}`;
+    starsStat.innerHTML = `Stars = ${stars}`;
 }
 
 // MODAL: Buttons listener func
@@ -212,7 +216,7 @@ function replayGame() {
     toggleModal();
 
 
-};
+}
 
 function resetCards(){
   for (var i = 0; i < cards.length; i++) {
