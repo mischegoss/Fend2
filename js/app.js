@@ -1,6 +1,6 @@
 //Variables
 let clockId;
-let starCount;
+let starCount = 3;
 let time = 0;
 let clockOff = true;
 let matchedcards = 0;
@@ -10,6 +10,7 @@ let toggledXY = []; //add the card to a list of open cards
 let moves = 0; // sets moves to zero
 const counter = document.querySelector(".moves");
 const starsArray = document.querySelectorAll(".stars li");
+
 
 
 
@@ -120,10 +121,18 @@ function moveCounts() { //This is the move counter
 
 function removeStar() { //This is the function to hide stars. It adds the class .hide which is styled in CSS.
   for (var i = 0; i < starsArray.length; i++) {
-    if (moves === 10) {
+    if (moves >= 10  &&  moves < 20) {
       starsArray[2].classList.add("hide");
-    } else {
+      starCount = 2;
+      console.log("starcount", starCount);
+
+      //starsArray[2].classList.remove("show");
+
+    } else if (moves >=20 ){
       starsArray[1].classList.add("hide");
+      starCount = 1;
+      console.log("starcount", starCount);
+      //starsArray[2].classList.remove("show");
     }
   }
 }
@@ -157,13 +166,14 @@ function stopTimer() { //This stops the clock
 function toggleModal(){
   const modal = document.querySelector('.modal');
       modal.classList.toggle('hidden');
+      modal.classList.toggle('show');
 
 }
 
-function getStars() {
+/*function getStars() {
 //let starsList = document.querySelectorAll(".stars li");
 //var starRating = document.querySelector(".stars").innerHTML;
-  stars = document.querySelector('stars li');
+  stars = document.querySelector('fa fa-star show');
   starCount = 0;
   for (var i = 0; i < starsArray.length; i++) {
           starCount++;
@@ -171,21 +181,21 @@ function getStars() {
       }
 
 return starCount
-}
+}*/
 
 
 function writeModalStats() {
     const timeStat = document.querySelector('.time-stat');
     const clockTime = document.querySelector('#timer').innerHTML;
     const movesStat = document.querySelector('.moves-stat');
-    const starsStat = document.querySelector('.stars-stat')
+    const starsStat = document.querySelector('.stars-stat');
     //const starsStat = document.querySelector('.stars-stat');
-    const stars = getStars();
+    //const stars = getStars();
 
 
     timeStat.innerHTML = `Time = ${clockTime}`;
     movesStat.innerHTML = `Moves = ${moves}`;
-    starsStat.innerHTML = `Stars = ${stars}`;
+    starsStat.innerHTML = `Stars = ${starCount}`;
 }
 
 // MODAL: Buttons listener func
@@ -229,6 +239,9 @@ function resetCards(){
 function resetStars() {
   starsArray[2].classList.remove("hide");
   starsArray[1].classList.remove("hide");
+  //starsArray[2].classList.add("show");
+  // starsArray[1].classList.add("show");
+
 
     }
 
