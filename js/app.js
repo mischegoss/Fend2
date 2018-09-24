@@ -1,4 +1,4 @@
-/*Version 1 */
+/*Version 2 Fixes Reset Bug */
 
 //Variables
 const cardDeck = document.querySelector(".deck");
@@ -31,9 +31,11 @@ for (i = 0; i < cards.length; i++) {
       }
       cardToggle(targetX); // flips the cards
       cardOpen(targetX); //pushes clicked on card into array
+      console.log("first card");
       if (toggledXY.length === 2) {
         moveCounts();
         matched();
+        console.log("secondcard");
       }
     }
   });
@@ -183,12 +185,12 @@ function writeModalStats() {
 
 // MODAL: Buttons listener function
 document.querySelector(".cancel").addEventListener("click", toggleModal);
-
 document.querySelector(".replay").addEventListener("click", replayGame);
 document.querySelector(".restart").addEventListener("click", resetGame);
 
 function resetGame() {
   matchedCards = 0;
+  toggledXY = []; //add the card to a list of open cards
   resetClockAndTime();
   resetMoves();
   resetStars();
