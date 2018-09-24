@@ -190,7 +190,7 @@ document.querySelector(".restart").addEventListener("click", resetGame);
 
 function resetGame() {
   matchedCards = 0;
-  toggledXY = []; //add the card to a list of open cards
+  toggledXY = []; //This clears the toggledXY so that the first card is no longer acting like the second on reset
   resetClockAndTime();
   resetMoves();
   resetStars();
