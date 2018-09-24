@@ -1,3 +1,5 @@
+/*Version 1 */
+
 //Variables
 const cardDeck = document.querySelector(".deck");
 const starsArray = document.querySelectorAll(".stars li");
