@@ -1,4 +1,4 @@
-##Memory Game Project
+## Memory Game Project
 
 This is the second project for the Grow with Google/Udacity FEND program. It is a simple memory game using HTML, CSS and JavaScript. It uses Udacity provided starter code as a base.
 
