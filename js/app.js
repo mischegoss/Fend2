@@ -1,16 +1,13 @@
 //Variables
+const cardDeck = document.querySelector(".deck");
 const starsArray = document.querySelectorAll(".stars li");
 let clockId;
 let starCount = 3;
 let time = 0;
 let clockOff = true;
 let matchedCards = 0;
-//const minutes = Math.floor(time / 60);
-//const seconds = time % 60;
 let toggledXY = []; //add the card to a list of open cards
 let moves = 0; // sets moves to zero
-//const counter = document.querySelector(".moves");
-//const starsArray = document.querySelectorAll(".stars li");
 
 //Creates an array for the cards
 let card = document.getElementsByClassName("card");
@@ -67,7 +64,7 @@ function matched() {
     setTimeout(unmatched, 1500); //makes it so cards don't flip over immediately
   }
 }
-
+//Triggers modal and stops timer
 function youWon() {
   if (matchedCards === 8) {
     console.log("you won");
@@ -99,8 +96,6 @@ function shuffle(array) {
   }
   return array;
 }
-//
-const cardDeck = document.querySelector(".deck");
 
 function randomizeDeck() {
   //This function shuffles the cards
@@ -141,7 +136,7 @@ function removeStar() {
 }
 
 function startClock() {
-  //This  is the timer
+  //This is the timer
   time = 0;
   clockId = setInterval(() => {
     time++;
@@ -151,7 +146,7 @@ function startClock() {
 }
 
 function displayTimer() {
-  const timer = document.querySelector("#timer");
+  const timer = document.querySelector(".timer");
   timer.innerHTML = time;
   const minutes = Math.floor(time / 60);
   const seconds = time % 60;
@@ -174,24 +169,24 @@ function toggleModal() {
 }
 
 function writeModalStats() {
-  const timeStat = document.querySelector(".timeStat");
-  const clockTime = document.querySelector("#timer").innerHTML;
-  const movesStat = document.querySelector(".movesStat");
-  const starsStat = document.querySelector(".starsStat");
+  const timeStat = document.querySelector(".time-stat");
+  const clockTime = document.querySelector(".timer").innerHTML;
+  const movesStat = document.querySelector(".moves-stat");
+  const starsStat = document.querySelector(".stars-stat");
 
   timeStat.innerHTML = `Time = ${clockTime}`;
   movesStat.innerHTML = `Moves = ${moves}`;
   starsStat.innerHTML = `Stars = ${starCount}`;
 }
 
-// MODAL: Buttons listener func
+// MODAL: Buttons listener function
 document.querySelector(".cancel").addEventListener("click", toggleModal);
-/*document.querySelector('.modal_start').addEventListener('click', toggleStartModal);*/
+
 document.querySelector(".replay").addEventListener("click", replayGame);
 document.querySelector(".restart").addEventListener("click", resetGame);
 
 function resetGame() {
-  matchedcards = 0;
+  matchedCards = 0;
   resetClockAndTime();
   resetMoves();
   resetStars();
@@ -201,7 +196,7 @@ function resetGame() {
 
 //MODAL: Button "Reply" to reset the game func
 function replayGame() {
-  matchedcards = 0;
+  matchedCards = 0;
   resetClockAndTime();
   resetMoves();
   resetStars();
