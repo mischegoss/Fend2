@@ -1,5 +1,9 @@
 # Memory Game Project
 
+For this project I used Slack Forum and student guidance, Udacity Memory Card Walkthrough by Matthew Cranford, Tutorial by Ryan Waite for guidance.
+
+In addition, this background (background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%)) was suggested by a fellow student on the Grow with Google Slack channel. 
+
 ## Table of Contents
 
 * [Instructions](#instructions)

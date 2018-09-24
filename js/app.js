@@ -1,21 +1,22 @@
 //Variables
+const starsArray = document.querySelectorAll(".stars li");
 let clockId;
 let starCount = 3;
 let time = 0;
 let clockOff = true;
 let matchedCards = 0;
-const minutes = Math.floor(time / 60);
-const seconds = time % 60;
+//const minutes = Math.floor(time / 60);
+//const seconds = time % 60;
 let toggledXY = []; //add the card to a list of open cards
 let moves = 0; // sets moves to zero
-const counter = document.querySelector(".moves");
-const starsArray = document.querySelectorAll(".stars li");
+//const counter = document.querySelector(".moves");
+//const starsArray = document.querySelectorAll(".stars li");
 
 //Creates an array for the cards
 let card = document.getElementsByClassName("card");
 const cards = [...card];
 
-for (var i = 0; i < cards.length; i++) {
+for (i = 0; i < cards.length; i++) {
   //Looping to add event listener
   cards[i].addEventListener("click", () => {
     const targetX = event.target;
@@ -103,8 +104,8 @@ const cardDeck = document.querySelector(".deck");
 
 function randomizeDeck() {
   //This function shuffles the cards
-  var shuffledCards = shuffle(cards);
-  for (var i = 0; i < shuffledCards.length; i++) {
+  let shuffledCards = shuffle(cards);
+  for (i = 0; i < shuffledCards.length; i++) {
     shuffledCards.forEach.call(shuffledCards, function(item) {
       cardDeck.appendChild(item);
     });
@@ -115,6 +116,7 @@ window.onload = randomizeDeck();
 
 function moveCounts() {
   //This is the move counter
+  const counter = document.querySelector(".moves");
   moves === 0;
   moves++;
   counter.innerHTML = moves;
@@ -125,7 +127,7 @@ function moveCounts() {
 
 function removeStar() {
   //This is the function to hide stars. It adds the class .hide which is styled in CSS.
-  for (var i = 0; i < starsArray.length; i++) {
+  for (i = 0; i < starsArray.length; i++) {
     if (moves >= 10 && moves < 20) {
       starsArray[2].classList.add("hide");
       starCount = 2;
@@ -134,7 +136,6 @@ function removeStar() {
       starsArray[1].classList.add("hide");
       starCount = 1;
       console.log("starcount", starCount);
-      //starsArray[2].classList.remove("show");
     }
   }
 }
@@ -210,7 +211,7 @@ function replayGame() {
 }
 
 function resetCards() {
-  for (var i = 0; i < cards.length; i++) {
+  for (i = 0; i < cards.length; i++) {
     card[i].classList.remove("open");
     card[i].classList.remove("match");
     card[i].classList.remove("show");
